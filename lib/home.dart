@@ -12,6 +12,10 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.push(
         context,
@@ -20,14 +24,10 @@ class _HomeState extends State<Home> {
         ),
       );
     });
-  }
 
-  @override
-  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          color: Color(0xFF001515),
           child: Center(
             child: SpinKitWave(
               color: Colors.white,

@@ -42,13 +42,14 @@ class _PriceScreenState extends State<PriceScreen> {
     }
 
     return CupertinoPicker(
-      itemExtent: 32.0,
-      onSelectedItemChanged: (selectedIndex) {
-        print(selectedIndex);
-      },
-      children: cupertinoDrop
-    );
+        itemExtent: 32.0,
+        onSelectedItemChanged: (selectedIndex) {
+          print(selectedIndex);
+        },
+        children: cupertinoDrop);
   }
+
+  String selectedText = 'USD';
 
   @override
   Widget build(BuildContext context) {
@@ -56,40 +57,88 @@ class _PriceScreenState extends State<PriceScreen> {
       appBar: AppBar(
         title: Text('🤑 Coin Ticker'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+            height: 350.0,
             child: Card(
-              color: Colors.lightBlueAccent,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-                child: Text(
-                  '1 BTC = ? USD',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
+              color: Color(0xFF001515),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+                    child: Row(
+                      children: [
+                        DropdownButton<String>(
+                          dropdownColor: Colors.red,
+                          focusColor: Colors.blue,
+                          value: selectedText,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedText = value!; 
+                            });
+                          },
+                          items: [
+                            DropdownMenuItem<String>(
+                              child: Text('USD'),
+                              value: 'USD',
+                            ),
+                            DropdownMenuItem<String>(
+                              child: Text('EUR'),
+                              value: 'EUR',
+                            ),
+                            DropdownMenuItem<String>(
+                              child: Text('GBP'),
+                              value: 'GBP',
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
+                  Row(),
+                ],
               ),
             ),
           ),
-          Container(
-            height: 150.0,
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
-            child: Platform.isIOS ? iOSPicker() : androidDropdown(),
-          ),
-        ],
+        ),
       ),
+      //   body: Column(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     crossAxisAlignment: CrossAxisAlignment.stretch,
+      //     children: <Widget>[
+      //       Padding(
+      //         padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+      //         child: Card(
+      //           color: Color(0xFF001515),
+      //           elevation: 5.0,
+      //           shape: RoundedRectangleBorder(
+      //             borderRadius: BorderRadius.circular(10.0),
+      //           ),
+      //           child: Padding(
+      //             padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+      //             child: Text(
+      //               '1 BTC = ? USD',
+      //               textAlign: TextAlign.center,
+      //               style: TextStyle(
+      //                 fontSize: 20.0,
+      //                 color: Colors.white,
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //       ),
+      //       Container(
+      //         height: 150.0,
+      //         alignment: Alignment.center,
+      //         padding: EdgeInsets.only(bottom: 30.0),
+      //         color: Color(0xFF001515),
+      //         child: Platform.isIOS ? iOSPicker() : androidDropdown(),
+      //       ),
+      //     ],
+      //   ),
+      // );
     );
   }
 }
