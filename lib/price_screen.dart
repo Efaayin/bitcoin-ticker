@@ -55,56 +55,47 @@ class _PriceScreenState extends State<PriceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('🤑 Coin Ticker'),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-            height: 350.0,
-            child: Card(
-              color: Color(0xFF001515),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                    child: Row(
-                      children: [
-                        DropdownButton<String>(
-                          dropdownColor: Colors.red,
-                          focusColor: Colors.blue,
-                          value: selectedText,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedText = value!; 
-                            });
-                          },
-                          items: [
-                            DropdownMenuItem<String>(
-                              child: Text('USD'),
-                              value: 'USD',
-                            ),
-                            DropdownMenuItem<String>(
-                              child: Text('EUR'),
-                              value: 'EUR',
-                            ),
-                            DropdownMenuItem<String>(
-                              child: Text('GBP'),
-                              value: 'GBP',
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Row(),
-                ],
-              ),
-            ),
-          ),
+        title: Center(
+          child: Text('🤑 Coin Ticker'),
         ),
       ),
-      //   body: Column(
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Card(
+              color: Color(0xFF001515),
+
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   body: Column(
       //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
       //     crossAxisAlignment: CrossAxisAlignment.stretch,
       //     children: <Widget>[
@@ -139,6 +130,3 @@ class _PriceScreenState extends State<PriceScreen> {
       //     ],
       //   ),
       // );
-    );
-  }
-}

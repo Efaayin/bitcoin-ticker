@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
           primaryColor: Color(0xFF001515),
           scaffoldBackgroundColor: Colors.white),
-      home: Home(),
+      home: PriceScreen(),
     );
   }
 }
