@@ -10,12 +10,16 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
+  TextStyle kTextStyle = TextStyle(
+    color: Colors.black,
+    fontSize: 20,
+  );
 
   DropdownButton androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String currency in currenciesList) {
       var newItem = DropdownMenuItem<String>(
-        child: Text(currency),
+        child: Text(currency, style: kTextStyle,),
         value: currency,
       );
 
@@ -37,7 +41,7 @@ class _PriceScreenState extends State<PriceScreen> {
     List<Widget> cupertinoDrop = [];
 
     for (String currency in currenciesList) {
-      var newItem = Text(currency);
+      var newItem = Text(currency, style: kTextStyle,);
       cupertinoDrop.add(newItem);
     }
 
@@ -49,23 +53,38 @@ class _PriceScreenState extends State<PriceScreen> {
         children: cupertinoDrop);
   }
 
-  String selectedText = 'USD';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF001515),
       appBar: AppBar(
+        elevation: 0,
         title: Center(
           child: Text('🤑 Coin Ticker'),
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             flex: 1,
-            child: Card(
+            child: Container(
               color: Color(0xFF001515),
-
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+                color: Color(0xFFFFFFFF),
+              ),
+              child: Center(
+                child: Platform.isIOS ? iOSPicker() : androidDropdown(),
+              ),
             ),
           ),
         ],
