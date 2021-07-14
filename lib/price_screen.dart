@@ -1,4 +1,5 @@
 import 'package:bitcoin_ticker/coin_data.dart';
+import 'package:bitcoin_ticker/config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
@@ -19,7 +20,10 @@ class _PriceScreenState extends State<PriceScreen> {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String currency in currenciesList) {
       var newItem = DropdownMenuItem<String>(
-        child: Text(currency, style: kTextStyle,),
+        child: Text(
+          currency,
+          style: kTextStyle,
+        ),
         value: currency,
       );
 
@@ -41,7 +45,10 @@ class _PriceScreenState extends State<PriceScreen> {
     List<Widget> cupertinoDrop = [];
 
     for (String currency in currenciesList) {
-      var newItem = Text(currency, style: kTextStyle,);
+      var newItem = Text(
+        currency,
+        style: kTextStyle,
+      );
       cupertinoDrop.add(newItem);
     }
 
@@ -82,8 +89,32 @@ class _PriceScreenState extends State<PriceScreen> {
                 ),
                 color: Color(0xFFFFFFFF),
               ),
-              child: Center(
-                child: Platform.isIOS ? iOSPicker() : androidDropdown(),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Platform.isIOS ? iOSPicker() : androidDropdown()),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        width: 60.0,
+                        child: TextField(
+                          decoration: kTextFieldInputDecoration,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Check Rate'),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -93,59 +124,38 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //   body: Column(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     crossAxisAlignment: CrossAxisAlignment.stretch,
-      //     children: <Widget>[
-      //       Padding(
-      //         padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-      //         child: Card(
-      //           color: Color(0xFF001515),
-      //           elevation: 5.0,
-      //           shape: RoundedRectangleBorder(
-      //             borderRadius: BorderRadius.circular(10.0),
-      //           ),
-      //           child: Padding(
-      //             padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-      //             child: Text(
-      //               '1 BTC = ? USD',
-      //               textAlign: TextAlign.center,
-      //               style: TextStyle(
-      //                 fontSize: 20.0,
-      //                 color: Colors.white,
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //       Container(
-      //         height: 150.0,
-      //         alignment: Alignment.center,
-      //         padding: EdgeInsets.only(bottom: 30.0),
-      //         color: Color(0xFF001515),
-      //         child: Platform.isIOS ? iOSPicker() : androidDropdown(),
-      //       ),
-      //     ],
-      //   ),
-      // );
+//     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//     crossAxisAlignment: CrossAxisAlignment.stretch,
+//     children: <Widget>[
+//       Padding(
+//         padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+//         child: Card(
+//           color: Color(0xFF001515),
+//           elevation: 5.0,
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(10.0),
+//           ),
+//           child: Padding(
+//             padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+//             child: Text(
+//               '1 BTC = ? USD',
+//               textAlign: TextAlign.center,
+//               style: TextStyle(
+//                 fontSize: 20.0,
+//                 color: Colors.white,
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//       Container(
+//         height: 150.0,
+//         alignment: Alignment.center,
+//         padding: EdgeInsets.only(bottom: 30.0),
+//         color: Color(0xFF001515),
+//         child: Platform.isIOS ? iOSPicker() : androidDropdown(),
+//       ),
+//     ],
+//   ),
+// );
